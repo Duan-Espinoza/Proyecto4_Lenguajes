@@ -34,5 +34,11 @@
   <p align="center">
     https://docs.google.com/document/d/1ClcedZUvPQIJSQo-z_hvnqWqZLJGDzaJMrkcz-8wxyY/edit?usp=sharing
   </p>
+    <p align="center">
+    Puede acceder al diagrama UML de este proyecto mediante el siguiente enlace:
+  </p>
+  <p align="center">
+    [https://docs.google.com/document/d/1ClcedZUvPQIJSQo-z_hvnqWqZLJGDzaJMrkcz-8wxyY/edit?usp=sharing](https://lucid.app/lucidchart/de8e3ba8-3176-464d-9e74-2e62ae2ec554/edit?viewport_loc=-11%2C-11%2C1719%2C857%2C0_0&invitationId=inv_9349c591-d981-440a-9c71-a134a82f862e)
+  </p>
   <p align="center">
 </div>
