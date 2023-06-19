@@ -32,7 +32,7 @@
     Puede acceder al documento escrito de este proyecto mediante el siguiente enlace:
   </p>
   <p align="center">
-    https://docs.google.com/document/d/1ClcedZUvPQIJSQo-z_hvnqWqZLJGDzaJMrkcz-8wxyY/edit?usp=sharing
+    https://docs.google.com/document/d/12_V41Gu_FgH4RVX7fNBceP8_KjY7m76ZxYSlVwMz_EU/edit?usp=sharing
   </p>
     <p align="center">
     Puede acceder al diagrama UML de este proyecto mediante el siguiente enlace:

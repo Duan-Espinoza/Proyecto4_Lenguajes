@@ -2,6 +2,7 @@
  * Creando el servidor
  */
 
+const { response } = require("express");
 const http=require("http");
 const app=require("express")();
 app.get("/", (req,res)=> res.sendFile(__dirname+"/index.html"))
@@ -51,7 +52,8 @@ wsServer.on("request",request=>{
                 // creacion del nuevo objeto juego
                 games[gameId] = {
                     "id": gameId,
-                    "balls": 63
+                    "balls": 63,
+                    "clients": []
                 }
 
                 const payLoad = {
@@ -61,6 +63,34 @@ wsServer.on("request",request=>{
 
                 const con = clients[clientId].connection;
                 con.send(JSON.stringify(payLoad));
+            }
+            // un cliente solicitando unirse a una partida
+            if(result.method === "join") {
+                const clientId = result.clientId;
+                const gameId = result.gameId;
+
+                const game = games[gameId];  //obtener el objeto game que tenga el id gameId
+                
+                if(games.clients.length >= 4) {
+                    //multiplayer error
+                    console.log("Multiplayer top players reached");
+                    return;
+                }
+                const color = {"0":"Red","1":"Green","2":"Blue","3":"Yellow"}[game.clients.length]
+                game.clients.push({ 
+                    "clientId":clientId,
+                    "color":color
+                })
+
+                const payLoad = {
+                    "method":"join",
+                    "game": game
+                }
+
+                //ciclo entre todos los clientes del sistema para avisarles cuando se une un nuevo usuario a la partida
+                game.clients.array.forEach(c => {
+                    clients[c.clientId].connection.send(JSON.stringify(payLoad))
+                });
             }
 
         }catch(error){

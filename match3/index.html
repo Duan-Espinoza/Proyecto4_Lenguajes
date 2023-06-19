@@ -6,18 +6,40 @@
     <title>Math 3</title>
 </head>
 <body>
-    <h1>Matching 3 Buttons</h1>   
+    <h1>Match 3</h1>   
     <button id= 'btnCreate'>Crear partida</button>
+    <button id= 'btnJoin'>Unirse a partida</button>
+
+    <input type = 'text' id = 'txtGameId'>
+
     <script>
         //HTML Elements
         let clientId=null;
+        let gameId = null;
         let ws=new WebSocket("ws://localhost:7147")
 
         // Boton HTML para generar nueva partida
         const btnCreate = document.getElementById("btnCreate");
 
+        // Boton HTML para generar nueva partida
+        const btnJoin = document.getElementById("btnJoin");
+
+        //text field
+        const txtGameId = document.getElementById("txtGameId");
+
         //WIRING Events
         /**/
+        btnJoin.addEventListener("click", E => {
+            if(gameId === null)
+                gameId = txtGameId.value
+            const payLoad={
+                "method":"join",
+                "clientId":clientId,
+                "gameId":gameId
+            }    
+            ws.send(JSON.stringify(payLoad));
+        })
+
         btnCreate.addEventListener("click", e => {
             const payLoad={
                 "method":"create",
@@ -37,7 +59,7 @@
             }
             //crear juego
             if (response.method ==="create"){
-                gameId = response.gameId;
+                gameId = response.gameId;                
                 console.log("Partida creada con id " + response.game.id + " con " + response.game.casillas + " casillas");
             }
         }
