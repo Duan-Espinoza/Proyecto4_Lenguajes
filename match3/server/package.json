@@ -1,9 +1,0 @@
-{
-  "name": "match3",
-  "version": "1.0.0",
-  "description": "match3",
-  "main": "index.js",
-  "repository": "https://github.com/Duan-Espinoza/Proyecto4_Lenguajes.git",
-  "author": "jordano",
-  "license": "MIT"
-}

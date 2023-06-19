@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math 3</title>
+</head>
+<body>
+    <h1>Matching 3 Buttons</h1>   
+    <button id= 'btnCreate'>Crear partida</button>
+    <script>
+        //HTML Elements
+        let clientId=null;
+        let ws=new WebSocket("ws://localhost:7147")
+
+        // Boton HTML para generar nueva partida
+        const btnCreate = document.getElementById("btnCreate");
+
+        //WIRING Events
+        /**/
+        btnCreate.addEventListener("click", e => {
+            const payLoad={
+                "method":"create",
+                "clientId":clientId
+            }    
+            ws.send(JSON.stringify(payLoad));
+        })
+
+        
+        ws.onmessage = message => {
+            //message.data
+            const response = JSON.parse(message.data);
+            //coneccion
+            if (response.method ==="connect"){
+                clientId = response.clientId;
+                console.log("Client Id Set successfully " + clientId);
+            }
+            //crear juego
+            if (response.method ==="create"){
+                gameId = response.gameId;
+                console.log("Partida creada con id " + response.game.id + " con " + response.game.casillas + " casillas");
+            }
+        }
+        
+    </script>
+
+</body>
+</html>
